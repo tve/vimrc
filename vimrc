@@ -14,9 +14,14 @@ let mapleader=","
 
 " Bundles
 source ~/.vimrc.bundles
+autocmd FileType make     set noexpandtab
+autocmd FileType python   set noexpandtab
 
 " Appearance
-colorscheme jellybeans
+"colorscheme mayansmoke
+colorscheme chela_light
+hi VertSplit term=reverse ctermfg=105 ctermbg=105 guifg=#8888ff guibg=#8888ff
+hi SpecialChar cterm=none ctermfg=160 ctermbg=231 gui=none guifg=#cc2222 guibg=#fafafa
 if has("gui_gtk2")
   set guifont=Droid\ Sans\ Mono\ 6.5
   set guioptions=ai  "remove menu bar, use text tabs to prevent refresh issues
@@ -55,7 +60,7 @@ endif
 
 " Editor behavior
 set smartindent
-set backupdir=~/.vimswaps,/tmp
+set backupdir=~/.vimswaps,/tmp,~/,vimswaps
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set history=1000 " keep 1000 lines of command line history
 set ruler      " show the cursor position all the time
@@ -63,7 +68,7 @@ set showcmd    " display incomplete commands
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-set scrolljump=5                " Lines to scroll when cursor leaves screen
+"set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set shortmess+=filmnrxoOtT " Abbrev. of messages (avoids 'hit enter')
 set hidden     " Allow buffer switching without saving
@@ -81,7 +86,7 @@ set mouse=a    " Automatically enable mouse usage
 set mousehide  " Hide the mouse cursor while typing
 
 " Show vertical bar after 120 characters
-set colorcolumn=120
+set colorcolumn=100
 
 " Save backups to a less annoying place than the current directory.
 set backupdir=~/.vim/backup//
@@ -102,10 +107,11 @@ set autoindent
 set expandtab " Use spaces instead of tabs
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set nofoldenable
-set noballooneval
+"set noballooneval    " ballooneval is GUI-only
 
 " Search
 set incsearch  " do incremental searching
+set ignorecase " Case sensitive when uc present
 set smartcase  " Case sensitive when uc present
 
 " Files to be ignored
@@ -118,6 +124,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.idea/*,.idea,*/.idea,*/.idea/*
 filetype plugin indent on
 
 " Do not replace tabs with spaces for languages that care
+autocmd FileType make     set noexpandtab
+autocmd FileType python   set noexpandtab
 autocmd FileType javascript set dictionary+=$HOME/.vim/dict/node.dict
 
 " Remove trailing spaces
@@ -135,9 +143,9 @@ autocmd BufRead *\.txt map k gk
 autocmd BufRead *\.txt setlocal spell spelllang=en_us
 
 " Use tabs in GO
-autocmd Filetype go set softtabstop=4
-autocmd Filetype go set shiftwidth=4
-autocmd Filetype go set tabstop=4
+autocmd Filetype go set softtabstop=8
+autocmd Filetype go set shiftwidth=8
+autocmd Filetype go set tabstop=8
 autocmd Filetype go set noexpandtab
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd Filetype go set nolist " Do not hightlight tabs in go or other things in go, gofmt will clean it all up anyway
@@ -191,7 +199,6 @@ autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
 " Bundle filetype
 autocmd BufNewFile,BufReadPost *.bundle set filetype=vim
 
-
 " Key Mappings
 map Q gq " Don't use Ex mode, use Q for formatting
 map <leader>t :CtrlP<CR>
@@ -233,9 +240,6 @@ map <S-L> gt
 
 " Save with CTRL+s / CTRL+SHIFT+s
 map <C-S> :wa<cr>
-
-" Yank from the cursor to the end of the line, to be consistent with C and D.
-nnoremap Y y$
 
 " Fix home and end keybindings for screen, particularly on mac
 " - for some reason this fixes the arrow keys too. huh.
