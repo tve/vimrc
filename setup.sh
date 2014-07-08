@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -e ./setup.sh ]; then
+  echo "This script must be executed from the vim directory"
+  exit 1
+fi
+
 echo "Backing up existing vim config"
 today=`date +%Y%m%d`
 for i in $HOME/.vim $HOME/.vimrc $HOME/.vimrc.bundles; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
@@ -14,7 +19,7 @@ lnif() {
   fi
 }
 lnif $PWD/vimrc $HOME/.vimrc
-lnif $PWD/vimrc/vimrc.bundles $HOME/.vimrc.bundles
+lnif $PWD/vimrc.bundles $HOME/.vimrc.bundles
 
 echo "Installing Vundle and bundles"
 if [ ! -e $HOME/.vim/bundle/vundle ]; then
