@@ -14,7 +14,7 @@ lnif() {
   fi
 }
 lnif $PWD/vimrc $HOME/.vimrc
-lnif $PWD/vimrc.bundles $HOME/.vimrc.bundles
+lnif $PWD/vimrc/vimrc.bundles $HOME/.vimrc.bundles
 
 echo "Installing Vundle and bundles"
 if [ ! -e $HOME/.vim/bundle/vundle ]; then
