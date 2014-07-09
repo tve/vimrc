@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -e ./setup.sh ]; then
+  echo "This script must be executed from the vim directory"
+  exit 1
+fi
+
 echo "Backing up existing vim config"
 today=`date +%Y%m%d`
 for i in $HOME/.vim $HOME/.vimrc $HOME/.vimrc.bundles; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
