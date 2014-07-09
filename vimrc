@@ -41,6 +41,7 @@ endif
 set guioptions-=T " turns off toolbar
 set vb " turns off visual bell
 set noerrorbells " don't make noise
+set t_ut= " prevent background erase in screen, see "background-color-erase setting"
 
 " Prevent slow scrolling of long lines
 set synmaxcol=200
@@ -99,7 +100,7 @@ set directory=~/.vim/swap//
 silent !mkdir -p ~/.vim/swap ~/.vim/backup ~/.vim/undo
 
 " Formatting
-set nowrap " Do not wrap long lines
+"set nowrap " Do not wrap long lines
 set softtabstop=2
 set shiftwidth=2
 set tabstop=2
