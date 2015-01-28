@@ -212,9 +212,14 @@ Bundle 'tpope/vim-rails'
 let g:rubycomplete_buffer_loading = 1
 "let g:rubycomplete_classes_in_global = 1
 "let g:rubycomplete_rails = 1
+autocmd BufNewFile,BufRead *.ruby set shiftwidth=2
+autocmd BufNewFile,BufRead *.ruby set tabstop=2
+autocmd BufNewFile,BufRead *.ruby set softtabstop=2
+autocmd BufNewFile,BufRead *.ruby set expandtab
 
 " Golang
-Bundle 'Blackrush/vim-gocode'
+"Bundle 'Blackrush/vim-gocode'
+Bundle 'fatih/vim-go'
 
 " Node.js
 Bundle 'digitaltoad/vim-jade'

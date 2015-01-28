@@ -133,8 +133,9 @@ autocmd FileType javascript set dictionary+=$HOME/.vim/dict/node.dict
 autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,ruby autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
 " Custom extensions
-autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-autocmd BufNewFile,BufRead *.jst set filetype=html
+autocmd BufNewFile,BufRead *\.html\.twig set filetype=html.twig
+autocmd BufNewFile,BufRead *\.jst set filetype=html
+autocmd BufNewFile,BufRead *\.cat set filetype=ruby
 
 " Settings for raw text editing
 autocmd BufRead *\.txt setlocal formatoptions=l
@@ -148,8 +149,9 @@ autocmd Filetype go set softtabstop=8
 autocmd Filetype go set shiftwidth=8
 autocmd Filetype go set tabstop=8
 autocmd Filetype go set noexpandtab
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+"autocmd FileType go autocmd BufWritePre <buffer> Fmt " commented out when switching to vim-go
 autocmd Filetype go set nolist " Do not hightlight tabs in go or other things in go, gofmt will clean it all up anyway
+autocmd Filetype go map <leader>i :GoImports<CR>
 
 " Auto-completion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
