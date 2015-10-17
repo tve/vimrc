@@ -103,7 +103,7 @@ silent !mkdir -p ~/.vim/swap ~/.vim/backup ~/.vim/undo
 "set nowrap " Do not wrap long lines
 set softtabstop=2
 set shiftwidth=2
-set tabstop=2
+set tabstop=8
 set autoindent
 set expandtab " Use spaces instead of tabs
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
