@@ -1,37 +1,26 @@
-#!/bin/bash
+#! /bin/bash
 
-if [ ! -e ./setup.sh ]; then
-  echo "This script must be executed from the vim directory"
-  exit 1
-fi
+${XDG_CONFIG_HOME:=$HOME/.config}
+mkdir -p $XDG_CONFIG_HOME
 
-echo "Backing up existing vim config"
 today=`date +%Y%m%d`
-for i in $HOME/.vim $HOME/.vimrc $HOME/.vimrc.bundles; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
-
-echo "Creating symlinks"
-lnif() {
-  if [ ! -e $2 ] ; then
-    ln -s $1 $2
-  fi
-  if [ -L $2 ] ; then
-    ln -sf $1 $2
-  fi
-}
-lnif $PWD/vimrc $HOME/.vimrc
-lnif $PWD/vimrc.bundles $HOME/.vimrc.bundles
-
-echo "Installing Vundle and bundles"
-if [ ! -e $HOME/.vim/bundle/vundle ]; then
-  mkdir -p $HOME/.vim/bundle
-  git clone http://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
-else
-  cd $HOME/.vim/bundle/vundle && git pull
+nvim="${XDG_CONFIG_HOME}/nvim"
+if [[ -e $nvim && ! -L $nvim ]]; then
+  echo "Backing up existing neovim config"
+  mv $nvim $nvim.$today
 fi
-hell=$SHELL
-export SHELL="/bin/sh"
-vim -u $HOME/.vimrc.bundles +BundleInstall! +BundleClean +qall
-export SHELL=$hell
 
-echo "Note: Powerline requires additional setup: https://github.com/Lokaltog/powerline"
-echo "Note: gocode requires additional setup: https://github.com/nsf/gocode"
+echo "Creating symlink"
+rm -f $nvim
+ln -s $PWD $nvim
+
+echo "Installing plugins"
+curl -fLo ${nvim}/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+echo "Installing python hell"
+sudo apt-get install -y python3-dev python3-pip
+sudo pip3 install neovim
+
+nvim -u plugins.vim +PlugInstall +qall
+nvim -u init.vim +UpdateRemotePlugins +qall
