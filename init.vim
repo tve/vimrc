@@ -45,7 +45,7 @@ set showcmd    " display incomplete commands
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-set scrolljump=5                " Lines to scroll when cursor leaves screen
+"set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set shortmess+=filmnrxoOtT " Abbrev. of messages (avoids 'hit enter')
 set hidden     " Allow buffer switching without saving
@@ -70,10 +70,10 @@ set nobackup
 set noswapfile
 
 " Formatting
-set nowrap " Do not wrap long lines
-set softtabstop=4
-set shiftwidth=4
-set tabstop=4
+"set nowrap " Do not wrap long lines
+set softtabstop=2
+set shiftwidth=2
+set tabstop=8
 set autoindent
 set expandtab " Use spaces instead of tabs
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
@@ -108,6 +108,9 @@ autocmd BufRead *\.txt setlocal lbr
 autocmd BufRead *\.txt map j gj
 autocmd BufRead *\.txt map k gk
 autocmd BufRead *\.txt setlocal spell spelllang=en_us
+
+" Use old / fast regular expression engine
+set re=1
 
 " Auto-completion
 set completeopt-=preview " Remove annoying scratch window on completion

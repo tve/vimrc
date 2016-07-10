@@ -23,7 +23,8 @@ let NERDTreeShowHidden=0
 let NERDTreeChDirMode=2 " Keep cwd in sync with tree root
 let NERDTreeQuitOnOpen=0 " Do not close tree after opening a file
 let g:nerdtree_tabs_open_on_gui_startup=0
-map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+"map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+map <leader>d :execute 'NERDTreeToggle'<CR>
 map <leader>f :execute 'NERDTreeFind'<CR>
 
 Plug 'tpope/vim-surround'
@@ -128,7 +129,7 @@ Plug 'tpope/vim-unimpaired'
 
 " GO - golang
 Plug 'fatih/vim-go'
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "gofmt"
 let g:go_fmt_autosave = 1
 let g:go_fmt_fail_silently = 0
 let g:go_highlight_functions = 1
@@ -139,14 +140,16 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+"let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+"let g:syntastic_go_checkers = ['govet', 'gometalinter']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': [] }
 let g:go_list_type = "quickfix"
 
 " Present
-Plug 'raphael/vim-present-simple'
+"Plug 'raphael/vim-present-simple'
 
 " FISH'go',
 Plug 'dag/vim-fish'
@@ -169,6 +172,7 @@ au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>i :GoImports<CR>
 
 " Misc
 Plug 'tpope/vim-markdown'
