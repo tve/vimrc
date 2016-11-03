@@ -1,6 +1,6 @@
 #! /bin/bash
 
-${XDG_CONFIG_HOME:=$HOME/.config}
+echo ${XDG_CONFIG_HOME:=$HOME/.config}
 mkdir -p $XDG_CONFIG_HOME
 
 today=`date +%Y%m%d`
