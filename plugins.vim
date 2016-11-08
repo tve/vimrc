@@ -36,7 +36,7 @@ let g:ctrlp_working_path_mode='ra' " Use parent directory with '.git' file as ro
 let g:ctrlp_custom_ignore="/(.log$\|public\/|\.(git|hg|svn)|ui\/)"
 
 Plug 'godlygeek/csapprox'
-Plug 'jistr/vim-nerdtree-tabs'
+"Plug 'jistr/vim-nerdtree-tabs'
 
 Plug 'mbbill/undotree'
 nnoremap <Leader>u :UndotreeToggle<CR>
